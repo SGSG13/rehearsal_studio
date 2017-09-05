@@ -1,24 +1,27 @@
 import React, {Component} from 'react';
-import {
-    Step,
-    Stepper,
-    StepLabel,
-} from 'material-ui/Stepper';
+import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
+import Halls from './Halls'
+
 
 class StepperContent extends Component {
-    state = {
-        finished: false,
-        stepIndex: 0,
-    };
+    
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            finished: false,
+            stepIndex: 0
+        };
+    }
 
     handleNext = () => {
         const {stepIndex} = this.state;
         this.setState({
             stepIndex: stepIndex + 1,
-            finished: stepIndex >= 2,
+            finished: stepIndex >= 2
         });
     };
 
@@ -32,7 +35,7 @@ class StepperContent extends Component {
     getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
-                return 'Select campaign settings...';
+                return <Halls/>;
             case 1:
                 return 'What is an ad group anyways?';
             case 2:
@@ -74,16 +77,16 @@ class StepperContent extends Component {
                         </p>
                     ) : (
                         <div>
-                            <p>{this.getStepContent(stepIndex)}</p>
-                            <div style={{marginTop: 12}}>
+                            <div>{this.getStepContent(stepIndex)}</div>
+                            <div style={{marginTop: 30}}>
                                 <FlatButton
-                                    label="Back"
+                                    label="Назад"
                                     disabled={stepIndex === 0}
                                     onClick={this.handlePrev}
                                     style={{marginRight: 12}}
                                 />
                                 <RaisedButton
-                                    label={stepIndex === 2 ? 'Finish' : 'Next'}
+                                    label={stepIndex === 2 ? 'Бронировать' : 'Вперёд'}
                                     primary={true}
                                     onClick={this.handleNext}
                                 />

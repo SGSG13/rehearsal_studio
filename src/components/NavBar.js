@@ -3,9 +3,10 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 
+
 class NavBar extends Component {
     constructor(props) {
-        super(props)
+        super(props);
 
         this.state = {
             isOpen: false

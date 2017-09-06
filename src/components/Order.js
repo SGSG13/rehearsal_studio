@@ -1,17 +1,14 @@
 import React, {Component} from 'react';
 
 
-class Date extends Component {
+class Order extends Component {
     render() {
         return (
-            <div>
-
-            </div>
+            <div></div>
         );
     }
 }
 
 
 
-export default Date;
-
+export default Order;

@@ -4,6 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
 import Halls from './Halls'
+import DateSelect from './DateSelect'
 
 
 class StepperContent extends Component {
@@ -37,7 +38,7 @@ class StepperContent extends Component {
             case 0:
                 return <Halls/>;
             case 1:
-                return 'What is an ad group anyways?';
+                return <DateSelect/>;
             case 2:
                 return 'This is the bit I really care about!';
             default:

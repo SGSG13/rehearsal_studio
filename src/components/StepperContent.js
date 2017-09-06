@@ -5,6 +5,7 @@ import FlatButton from 'material-ui/FlatButton';
 
 import Halls from './Halls'
 import DateSelect from './DateSelect'
+import Order from './Order'
 
 
 class StepperContent extends Component {
@@ -40,7 +41,7 @@ class StepperContent extends Component {
             case 1:
                 return <DateSelect/>;
             case 2:
-                return 'This is the bit I really care about!';
+                return <Order/>;
             default:
                 return 'You\'re a long way from home sonny jim!';
         }

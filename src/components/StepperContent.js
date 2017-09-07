@@ -2,13 +2,18 @@ import React, {Component} from 'react';
 import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
-
+import {connect} from 'react-redux'
 import StepHalls from './StepHalls'
 import StepDate from './StepDate'
 import StepOrder from './StepOrder'
 
+import {getUser} from '../AC'
+
+// import {LS} from '../util'
 
 class StepperContent extends Component {
+
+    
     
     constructor(props) {
         super(props);
@@ -17,6 +22,11 @@ class StepperContent extends Component {
             finished: false,
             stepIndex: 0
         };
+
+    }
+
+    componentDidMount() {
+        this.props.getUser()
     }
 
     handleNext = () => {
@@ -102,4 +112,8 @@ class StepperContent extends Component {
 }
 
 
-export default StepperContent;
+export default connect((state) => {
+    return {
+      
+    }
+}, {getUser})(StepperContent)

@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import StepperContent from './StepperContent'
 
 class App extends Component {
+    
     render() {
         return (
             <div>

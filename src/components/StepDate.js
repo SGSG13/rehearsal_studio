@@ -15,7 +15,7 @@ const styleP = {
 };
 
 
-class DateSelect extends Component {
+class StepDate extends Component {
     constructor(props) {
         super(props);
 
@@ -55,5 +55,5 @@ class DateSelect extends Component {
 
 
 
-export default DateSelect;
+export default StepDate;
 

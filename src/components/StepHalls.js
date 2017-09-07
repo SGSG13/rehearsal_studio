@@ -33,7 +33,7 @@ const stylePaper2 = {
 
 
 
-class Halls extends Component {
+class StepHalls extends Component {
 
     constructor(props) {
         super (props);
@@ -71,4 +71,4 @@ class Halls extends Component {
     }
 }
 
-export default Halls;
+export default StepHalls;

@@ -3,9 +3,9 @@ import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
 import RaisedButton from 'material-ui/RaisedButton';
 import FlatButton from 'material-ui/FlatButton';
 
-import Halls from './Halls'
-import DateSelect from './DateSelect'
-import Order from './Order'
+import StepHalls from './StepHalls'
+import StepDate from './StepDate'
+import StepOrder from './StepOrder'
 
 
 class StepperContent extends Component {
@@ -37,11 +37,11 @@ class StepperContent extends Component {
     getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
-                return <Halls/>;
+                return <StepHalls/>;
             case 1:
-                return <DateSelect/>;
+                return <StepDate/>;
             case 2:
-                return <Order/>;
+                return <StepOrder/>;
             default:
                 return 'You\'re a long way from home sonny jim!';
         }

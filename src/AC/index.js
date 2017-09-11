@@ -26,14 +26,12 @@ export function getUser() {
 }
 
 export function getSlots(hall) {
-    const slots = LS.get('slots')[hall];
+    const booked = LS.get('slots')[hall];
 
     return (dispatch) => {
-        delay(1000).then(() => {
             dispatch({
                 type: GET_SLOTS,
-                slots
+                booked
             });
-        });
     };
 }

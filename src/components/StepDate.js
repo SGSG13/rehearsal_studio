@@ -1,21 +1,11 @@
 import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
-import TableExampleControlled from './RoomSlots'
-
-const styleB = {
-    margin: 12,
-    display: 'inline-block'
-};
-
-const styleP = {
-    margin: 12,
-    display: 'inline-block',
-    width: 140
-};
-
+import RoomSlots from './RoomSlots'
+import SelectDate from './SelectDate'
+import {connect} from 'react-redux'
+import getDate from '../utils';
 
 class StepDate extends Component {
+
     constructor(props) {
         super(props);
 
@@ -25,28 +15,11 @@ class StepDate extends Component {
     }
 
 
-    handleChange = (event, date) => {
-        this.setState({
-            controlledDate: date
-        });
-        let time =  date.getFullYear()+'-'+0+(date.getMonth()+ 1)+'-'+date.getDate();
-        console.log(time)
-    };
-
     render() {
         return (
             <div className="row">
-                <div className="col-lg-6">
-                    <RaisedButton label="Сегодня" style={styleB} />
-                    <DatePicker
-                        hintText="Controlled Date Input"
-                        value={this.state.controlledDate}
-                        onChange={this.handleChange}
-                        autoOk
-                        style={styleP}
-                    />
-                    <TableExampleControlled/>
-                </div>
+                <SelectDate/>
+                <RoomSlots booked = {this.props.booked} />
             </div>
 
         );
@@ -55,5 +28,14 @@ class StepDate extends Component {
 
 
 
-export default StepDate;
+export default connect((state) => {
+    const booked = state.slots.booked;
+    const filterDate = booked.filter(item => {
+        return (item.date === '201708999')
+    });
+
+    return {
+        booked: filterDate
+    }
+}, {})(StepDate)
 

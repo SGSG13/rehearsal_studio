@@ -6,8 +6,7 @@ class OrderForm extends Component {
 
     state = {
         band: '',
-        phone: '',
-        comment: ''
+        phone: ''
     };
 
     handleChange = type => ev => {
@@ -33,13 +32,6 @@ class OrderForm extends Component {
                     // errorText="Введите телефон"
                     value = {this.state.phone}
                     onChange = {this.handleChange('phone')}
-                /><br />
-                <TextField
-                    floatingLabelText="Комментарий"
-                    multiLine={true}
-                    rows={4}
-                    value = {this.state.comment}
-                    onChange = {this.handleChange('comment')}
                 /><br />
             </div>
         );

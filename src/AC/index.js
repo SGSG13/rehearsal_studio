@@ -1,4 +1,5 @@
 import {GET_USER} from '../constants'
+import {GET_SLOTS} from '../constants'
 import { LS, delay, randomId } from '../utils';
 
 export function getUser() {
@@ -17,10 +18,21 @@ export function getUser() {
     }
     
     return (dispatch) => {
+        dispatch({
+            type: GET_USER,
+            user
+        });
+    };
+}
+
+export function getSlots(hall) {
+    const slots = LS.get('slots')[hall];
+
+    return (dispatch) => {
         delay(1000).then(() => {
             dispatch({
-                type: GET_USER,
-                user
+                type: GET_SLOTS,
+                slots
             });
         });
     };

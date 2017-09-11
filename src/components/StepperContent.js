@@ -8,26 +8,60 @@ import StepDate from './StepDate'
 import StepOrder from './StepOrder'
 
 import {getUser} from '../AC'
+import {getSlots} from '../AC'
 
-// import {LS} from '../util'
+import {LS} from '../utils'
 
 class StepperContent extends Component {
 
-    
-    
     constructor(props) {
         super(props);
 
         this.state = {
             finished: false,
-            stepIndex: 0
+            stepIndex: 0,
+            hall: 'big'
         };
 
     }
 
     componentDidMount() {
-        this.props.getUser()
+        this.props.getUser();
+
+
+        //  const slots = {
+        //     small: [
+        //         {
+        //             date: '201708999',
+        //             slots: ['1', '3']
+        //         },
+        //         {
+        //             date: '201708934',
+        //             slots: ['2']
+        //         }
+        //     ],
+        //     big: [
+        //         {
+        //             date: '20170808545454',
+        //             slots: ['1']
+        //         }
+        //     ]
+        // };
+        //
+        // LS.set('slots', slots)
     }
+
+    selectHall = (ev, val) => {
+        this.setState({
+            hall: val
+        });
+    };
+
+    handleHalls = () => {
+        this.props.getSlots(this.state.hall);
+        this.handleNext();
+    };
+
 
     handleNext = () => {
         const {stepIndex} = this.state;
@@ -47,13 +81,26 @@ class StepperContent extends Component {
     getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
-                return <StepHalls/>;
+                return <StepHalls selectHall = {this.selectHall} default = {this.state.hall}/>;
             case 1:
                 return <StepDate/>;
             case 2:
                 return <StepOrder/>;
             default:
                 return 'You\'re a long way from home sonny jim!';
+        }
+    }
+
+    getButtonFunction(stepIndex){
+        switch (stepIndex) {
+            case 0:
+                return this.handleHalls;
+            case 1:
+                return this.handleNext;
+            case 2:
+                return this.handleNext;
+            default:
+                return this.handleNext
         }
     }
 
@@ -100,7 +147,7 @@ class StepperContent extends Component {
                                 <RaisedButton
                                     label={stepIndex === 2 ? 'Бронировать' : 'Вперёд'}
                                     primary={true}
-                                    onClick={this.handleNext}
+                                    onClick={this.getButtonFunction(stepIndex)}
                                 />
                             </div>
                         </div>
@@ -116,4 +163,4 @@ export default connect((state) => {
     return {
       
     }
-}, {getUser})(StepperContent)
+}, {getUser, getSlots})(StepperContent)

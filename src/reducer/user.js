@@ -9,7 +9,6 @@ const initialState = {
 
 export default (state = initialState, action) => {
     const {type, user} = action;
-    
     switch (type) {
         case GET_USER:
             return{
@@ -18,8 +17,5 @@ export default (state = initialState, action) => {
 
         default:
             return state;
-
     }
-
-
 }

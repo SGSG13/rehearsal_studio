@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import Paper from 'material-ui/Paper';
+import {connect} from 'react-redux'
+import {getSlots} from '../AC'
 
 const styles = {
     radioButton: {
@@ -32,36 +34,21 @@ const stylePaper2 = {
 };
 
 
-
 class StepHalls extends Component {
-
-    constructor(props) {
-        super (props);
-
-        this.state = {
-            hall: 'Большой зал'
-        }
-    }
-
-    selectHall = (ev, val) => {
-        this.setState({
-            hall: val
-        })
-    };
 
     render() {
         return (
             <div>
                 <Paper style={stylePaper1} zDepth={2} />
                 <Paper style={stylePaper2} zDepth={2} />
-                <RadioButtonGroup name="select halls" onChange = {this.selectHall} defaultSelected="Большой зал">
+                <RadioButtonGroup name="select halls" onChange = {this.props.selectHall} defaultSelected={this.props.default}>
                     <RadioButton
-                        value="Большой зал"
+                        value="big"
                         label= "Большой зал"
                         style={styles.radioButton}
                     />
                     <RadioButton
-                        value="Малый зал"
+                        value="small"
                         label="Малый зал"
                         style={styles.radioButton}
                     />
@@ -71,4 +58,4 @@ class StepHalls extends Component {
     }
 }
 
-export default StepHalls;
+export default StepHalls

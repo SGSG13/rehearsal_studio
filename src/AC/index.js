@@ -40,9 +40,11 @@ export function getSlots(hall) {
 }
 
 export function setDate(date) {
+    const slots = [];
     return {
         type: SET_DATE,
-        date
+        date,
+        slots
     }
 }
 

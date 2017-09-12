@@ -17,7 +17,7 @@ export default (state = initStor, action) => {
     switch (type) {
         case SET_DATE:
             return{
-                ...state, date
+                ...state, date, slots
             };
         case SET_HALL:
             return{

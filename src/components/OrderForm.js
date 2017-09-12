@@ -19,7 +19,7 @@ class OrderForm extends Component {
 
     render() {
         return (
-            <div className="col-lg-6">
+            <div className="col-lg-5">
                 <Subheader>Ваши данные</Subheader>
                 <TextField
                     floatingLabelText="Группа"

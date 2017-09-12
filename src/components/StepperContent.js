@@ -10,6 +10,7 @@ import StepOrder from './StepOrder'
 import {getUser} from '../AC'
 import {getSlots} from '../AC'
 
+
 import {LS} from '../utils'
 
 class StepperContent extends Component {
@@ -20,7 +21,6 @@ class StepperContent extends Component {
         this.state = {
             finished: false,
             stepIndex: 0,
-            hall: 'big'
         };
 
     }
@@ -32,17 +32,17 @@ class StepperContent extends Component {
         //  const slots = {
         //     small: [
         //         {
-        //             date: '201708999',
+        //             date: '2017912',
         //             slots: ['1', '3']
         //         },
         //         {
-        //             date: '201708934',
+        //             date: '2017913',
         //             slots: ['2']
         //         }
         //     ],
         //     big: [
         //         {
-        //             date: '20170808545454',
+        //             date: '2017912',
         //             slots: ['1']
         //         }
         //     ]
@@ -51,14 +51,11 @@ class StepperContent extends Component {
         // LS.set('slots', slots)
     }
 
-    selectHall = (ev, val) => {
-        this.setState({
-            hall: val
-        });
-    };
+    
 
     handleHalls = () => {
-        this.props.getSlots(this.state.hall);
+        const {getSlots} = this.props;
+        getSlots(this.props.hall);
         this.handleNext();
     };
 
@@ -81,7 +78,7 @@ class StepperContent extends Component {
     getStepContent(stepIndex) {
         switch (stepIndex) {
             case 0:
-                return <StepHalls selectHall = {this.selectHall} default = {this.state.hall}/>;
+                return <StepHalls/>;
             case 1:
                 return <StepDate/>;
             case 2:
@@ -161,6 +158,6 @@ class StepperContent extends Component {
 
 export default connect((state) => {
     return {
-      
+      hall: state.order.hall
     }
 }, {getUser, getSlots})(StepperContent)

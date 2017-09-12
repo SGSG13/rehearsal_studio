@@ -12,7 +12,7 @@ export default (state = initialState, action) => {
     switch (type) {
         case GET_USER:
             return{
-                ...state, user
+                ...state, ...user
             };
 
         default:

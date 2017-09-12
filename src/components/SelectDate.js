@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
 import {connect} from 'react-redux'
-import {setDate} from '../AC'
+import {setDate, getSlots} from '../AC'
 
 const styleB = {
     margin: 12,
@@ -22,14 +22,18 @@ class SelectDate extends Component {
         this.props.setDate(date);
     };
 
+    handleToDay = () => {
+        this.props.setDate(new Date);
+    };
+
     render() {
-        const {controlledDate} = this.props;
+        const {date} = this.props;
         return (
                 <div className="col-lg-6">
-                    <RaisedButton label="Сегодня" style={styleB} />
+                    <RaisedButton label="Сегодня" style={styleB} onClick = {this.handleToDay} />
                     <DatePicker
                         hintText="Controlled Date Input"
-                        value={controlledDate}
+                        value={date}
                         onChange={this.handleChange}
                         autoOk
                         style={styleP}
@@ -42,7 +46,7 @@ class SelectDate extends Component {
 
 export default connect((state) => {
     return {
-        controlledDate: state.date.controlledDate
+        date: state.order.date
     }
-}, {setDate})(SelectDate)
+}, {setDate, getSlots})(SelectDate)
 

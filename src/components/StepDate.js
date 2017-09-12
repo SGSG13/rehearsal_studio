@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import RoomSlots from './RoomSlots'
 import SelectDate from './SelectDate'
 import {connect} from 'react-redux'
-import getDate from '../utils';
+
 
 class StepDate extends Component {
 

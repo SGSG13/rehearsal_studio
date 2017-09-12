@@ -1,5 +1,6 @@
 import {GET_USER} from '../constants'
 import {GET_SLOTS} from '../constants'
+import {SET_DATE} from '../constants'
 import { LS, delay, randomId } from '../utils';
 
 export function getUser() {
@@ -35,3 +36,11 @@ export function getSlots(hall) {
             });
     };
 }
+
+export function setDate(controlledDate) {
+    return {
+        type: SET_DATE,
+        controlledDate
+    }
+}
+

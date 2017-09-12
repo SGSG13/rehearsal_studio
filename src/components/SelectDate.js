@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
-
+import {connect} from 'react-redux'
+import {setDate} from '../AC'
 
 const styleB = {
     margin: 12,
@@ -17,30 +18,18 @@ const styleP = {
 
 class SelectDate extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            controlledDate: new Date()
-        };
-    }
-
-
     handleChange = (event, date) => {
-        this.setState({
-            controlledDate: date
-        });
-        let time =  date.getFullYear()+'-'+0+(date.getMonth()+ 1)+'-'+date.getDate();
-        console.log(time)
+        this.props.setDate(date);
     };
 
     render() {
+        const {controlledDate} = this.props;
         return (
                 <div className="col-lg-6">
                     <RaisedButton label="Сегодня" style={styleB} />
                     <DatePicker
                         hintText="Controlled Date Input"
-                        value={this.state.controlledDate}
+                        value={controlledDate}
                         onChange={this.handleChange}
                         autoOk
                         style={styleP}
@@ -51,6 +40,9 @@ class SelectDate extends Component {
 }
 
 
-
-export default SelectDate;
+export default connect((state) => {
+    return {
+        controlledDate: state.date.controlledDate
+    }
+}, {setDate})(SelectDate)
 

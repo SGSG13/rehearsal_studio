@@ -2,17 +2,17 @@ import React, {Component} from 'react';
 import RoomSlots from './RoomSlots'
 import SelectDate from './SelectDate'
 import {connect} from 'react-redux'
-import {dateToString} from '../utils/dateToString';
+import {setSlots} from '../AC'
+import {filtratedSlotsSelector} from '../selectors'
 
 class StepDate extends Component {
-
     render() {
         return (
             <div className="row">
                 <SelectDate/>
-                <RoomSlots key = {this.props.booked.length? this.props.booked[0].date : 1}
-                           booked = {this.props.booked}
-                           hall = {this.props.hall}
+                <RoomSlots
+                    key = {Object.keys(this.props.booked).length > 0 ? this.props.booked[0].date : 1}
+                    {...this.props}
                 />
             </div>
         );
@@ -21,18 +21,10 @@ class StepDate extends Component {
 
 
 export default connect((state) => {
-    const booked = state.slots.booked;
-    const date = dateToString(state.order.date);
-    if(!booked.length) return {
-        booked: booked
-    };
-    const filterBooked = booked.filter(item => {
-        if(!item.date) return false;
-        return (item.date === date)
-    });
     return {
-        booked: filterBooked,
-        hall: state.order.hall
+        booked: filtratedSlotsSelector(state),
+        hall: state.order.hall,
+        slots: state.order.slots
     }
-}, {})(StepDate)
+}, {setSlots})(StepDate)
 

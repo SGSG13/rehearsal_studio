@@ -38,7 +38,6 @@ class StepHalls extends Component {
 
     selectHall = (ev, val) => {
         this.props.setHall(val);
-        console.log('hallll', val);
     };
 
     render() {

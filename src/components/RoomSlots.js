@@ -7,8 +7,7 @@ import {
 
 } from 'material-ui/Table';
 import Subheader from 'material-ui/Subheader';
-import {connect} from 'react-redux'
-import {setSlots} from '../AC'
+
 
 
 class RoomSlots extends Component {
@@ -34,15 +33,18 @@ class RoomSlots extends Component {
         this.props.setSlots(selectedRows)
     };
 
+    
+
     componentWillMount() {
         this.bookedSlot();
     }
+
     
     bookedSlot = () => {
-        const {booked} = this.props;
-        if(!booked.length) return;
-        const bookedDay = booked[0].slots;
-        bookedDay.forEach( num => {
+        if(!Object.keys(this.props.booked).length || !this.props.booked[0].slots.length ) return;
+
+        const booked = this.props.booked[0].slots;
+        booked.forEach( num => {
             this.setState({
                 ['slot_' + num]: -1
             })
@@ -117,8 +119,4 @@ class RoomSlots extends Component {
     }
 }
 
-export default connect((state) => {
-    return {
-        slots: state.order.slots
-    }
-}, {setSlots})(RoomSlots)
+export default RoomSlots

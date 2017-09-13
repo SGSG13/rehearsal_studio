@@ -32,17 +32,17 @@ class StepperContent extends Component {
         //  const slots = {
         //     small: [
         //         {
-        //             date: '2017913',
+        //             date: '13-9-2017',
         //             slots: ['1', '3']
         //         },
         //         {
-        //             date: '2017914',
+        //             date: '14-9-2017',
         //             slots: ['2']
         //         }
         //     ],
         //     big: [
         //         {
-        //             date: '2017913',
+        //             date: '13-9-2017',
         //             slots: ['1']
         //         }
         //     ]

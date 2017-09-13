@@ -3,6 +3,7 @@ import {GET_SLOTS} from '../constants'
 import {SET_DATE} from '../constants'
 import {SET_HALL} from '../constants'
 import {SET_SLOTS} from '../constants'
+import {DEL_SLOT} from '../constants'
 import { LS, delay, randomId } from '../utils';
 
 export function getUser() {
@@ -38,6 +39,14 @@ export function getSlots(hall) {
             });
     };
 }
+
+export function deleteSlot(delSlot) {
+    return {
+        type: DEL_SLOT,
+        delSlot
+    }
+}
+
 
 export function setDate(date) {
     const slots = [];

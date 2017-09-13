@@ -19,7 +19,6 @@ class StepDate extends Component {
     }
 }
 
-
 export default connect((state) => {
     return {
         booked: filtratedSlotsSelector(state),

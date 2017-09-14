@@ -4,8 +4,6 @@ import {
     TableRowColumn,
 
 } from 'material-ui/Table';
-
-import {connect} from 'react-redux'
 import {dateToString} from '../utils/dateToString';
 
 class OrderRow extends Component {
@@ -37,7 +35,6 @@ class OrderRow extends Component {
     };
     
     deleteSlot = () => {
-        console.log('deeeel', this.props.slot);
         this.props.deleteSlot(this.props.slot);
     };
 
@@ -58,9 +55,5 @@ class OrderRow extends Component {
 
 
 
-export default connect((state) => {
-    return {
-       
-    }
-}, {})(OrderRow)
+export default OrderRow
 

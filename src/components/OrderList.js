@@ -5,7 +5,7 @@ import {
     TableHeader,
     TableHeaderColumn,
     TableRow,
-
+    TableRowColumn
 } from 'material-ui/Table';
 import Subheader from 'material-ui/Subheader';
 import OrderRow from './OrderRow'
@@ -40,6 +40,7 @@ class OrderList extends Component {
                     </TableHeader>
                     <TableBody displayRowCheckbox={false}>
                         {slots.map((slot) => <OrderRow key = {slot} deleteSlot = {this.props.deleteSlot} slot = {slot} order = {order}/>)}
+                        {slots.length > 0 ? '' : <TableRow><TableRowColumn>У вас нет заказов</TableRowColumn></TableRow>}
                     </TableBody>
                 </Table>
                 <br/>

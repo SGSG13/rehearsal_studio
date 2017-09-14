@@ -75,12 +75,12 @@ class StepperContent extends Component {
         }
     };
 
-    disableButton = (stepIndex, slots, band, phone) => {
+    disableButton = (stepIndex, slots, band, phone, order) => {
         switch (stepIndex) {
             case 1:
                 return (!slots.length) ? false : true;
             case 2:
-                return (band === '' || phone === '') ? false : true;
+                return (band === '' || phone === '' || (order.slots.length < 1)) ? false : true;
             default:
                 return true
         }
@@ -114,7 +114,7 @@ class StepperContent extends Component {
 
     render() {
         const {finished, stepIndex} = this.state;
-        const {slots, band, phone} = this.props;
+        const {slots, band, phone, order} = this.props;
         const contentStyle = {margin: '0 16px'};
 
         return (
@@ -158,7 +158,7 @@ class StepperContent extends Component {
                                     label={stepIndex === 2 ? 'Бронировать' : 'Вперёд'}
                                     primary={true}
                                     onClick={this.getButtonFunction(stepIndex)}
-                                    disabled = {this.disableButton(stepIndex, slots, band, phone) ? false : true}
+                                    disabled = {this.disableButton(stepIndex, slots, band, phone, order) ? false : true}
                                 />
                             </div>
                         </div>
@@ -175,6 +175,7 @@ export default connect((state) => {
         hall: state.order.hall,
         slots: state.order.slots,
         band: state.user.band,
-        phone: state.user.phone
+        phone: state.user.phone,
+        order: state.order
     }
 }, {getUser, getSlots})(StepperContent)

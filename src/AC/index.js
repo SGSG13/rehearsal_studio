@@ -4,6 +4,7 @@ import {SET_DATE} from '../constants'
 import {SET_HALL} from '../constants'
 import {SET_SLOTS} from '../constants'
 import {DEL_SLOT} from '../constants'
+import {SET_INFO} from '../constants'
 import { LS, delay, randomId } from '../utils';
 
 export function getUser() {
@@ -68,6 +69,14 @@ export function setSlots(slots) {
     return {
         type: SET_SLOTS,
         slots
+    }
+}
+
+
+export function setInfo(band, phone) {
+    return {
+        type: SET_INFO,
+        band, phone
     }
 }
 

@@ -11,6 +11,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
     const {type, user, band, phone, orderId} = action;
+    console.log('user', user);
     switch (type) {
         case GET_USER:
             return{

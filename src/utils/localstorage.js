@@ -49,10 +49,22 @@ export default class LS {
             }
         };
 
+        const addUsers = (arr, newUser) =>{
+            if(arr.some(localUser => localUser.userID === newUser.userID ? true : false)) {
+                return arr.map(localUser =>{
+                    if(localUser.userID === newUser.userID){
+                        return {...localUser, orders: localUser.orders.concat(newUser.orders)}
+                    } return localUser
+                })
+            } else {
+                return arr.concat(newUser)
+            }
+        };
+
         
         switch (field) {
             case 'users':
-                dataToStorage = {...dataToStorage, users: dataToStorage.users.concat(data)};
+                dataToStorage = {...dataToStorage, users: addUsers(dataToStorage.users, data)};
                 break;
             case 'orders':
                 dataToStorage = {...dataToStorage, orders: dataToStorage.orders.concat(data)};

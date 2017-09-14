@@ -6,3 +6,4 @@ export const SET_SLOTS = 'SET_SLOTS';
 export const DEL_SLOT = 'DEL_SLOT';
 export const SET_INFO = 'SET_INFO';
 export const SET_ORDER = 'SET_ORDER';
+export const DEFAULT_ORDER = 'DEFAULT_ORDER';

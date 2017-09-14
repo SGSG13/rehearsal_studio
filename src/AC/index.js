@@ -6,6 +6,7 @@ import {SET_SLOTS} from '../constants'
 import {DEL_SLOT} from '../constants'
 import {SET_INFO} from '../constants'
 import {SET_ORDER} from '../constants'
+import {DEFAULT_ORDER} from '../constants'
 import {LS, delay, randomId} from '../utils';
 import {dateToString} from '../utils/dateToString'
 
@@ -16,28 +17,19 @@ export function getUser() {
         const newUser = {
                 userID: randomId()
             };
-        const users = [];
-        const orders = [];
-        const slots = {
-            small: [],
-            big: []
-        };
-
+        
         LS.set('save_user',newUser);
-        // LS.set('users', users);
-        // LS.set('orders', orders);
-        // LS.set('slots', slots);
         user = newUser;
         
     }else{
-        console.log('get',LS.get('save_user'));
-        if(!LS.get('save_user')) {
-            const newUser = {
-                userID: randomId()
-            };
-            LS.set('save_user',newUser);
-        }
         user = LS.get('save_user');
+
+        let users = LS.get('users');
+        if(users.length > 0){
+            console.log('filter');
+          const filterUser = users.filter(localUser => localUser.userID === user.userID ? true : false);
+            if(filterUser.length > 0) user = {...filterUser[0], orders: []};
+        }
     }
     
     return (dispatch) => {
@@ -120,6 +112,17 @@ export function reservation() {
         LS.set('users',user);
         LS.set('orders',order);
         LS.set('slots',slots);
+
+        dispatch({
+            type: DEFAULT_ORDER,
+            dfltOrder: {
+                id: randomId(),
+                userID: '',
+                date: new Date(),
+                hall: 'big',
+                slots: []
+            }
+        });
 
     };
 }

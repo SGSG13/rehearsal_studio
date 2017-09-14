@@ -3,6 +3,7 @@ import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import Paper from 'material-ui/Paper';
 import {connect} from 'react-redux'
 import {setHall} from '../AC'
+import {getUser} from '../AC'
 
 const styles = {
     radioButton: {
@@ -40,6 +41,11 @@ class StepHalls extends Component {
         this.props.setHall(val);
     };
 
+    componentDidMount() {
+        this.props.getUser();
+
+    }
+
     render() {
         return (
             <div>
@@ -66,4 +72,4 @@ export default connect((state) => {
     return {
         hall: state.order.hall
     }
-}, {setHall})(StepHalls)
+}, {setHall, getUser})(StepHalls)

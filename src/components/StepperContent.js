@@ -7,7 +7,7 @@ import StepHalls from './StepHalls'
 import StepDate from './StepDate'
 import StepOrder from './StepOrder'
 
-import {getUser} from '../AC'
+
 import {getSlots} from '../AC'
 import {reservation} from '../AC'
 
@@ -26,25 +26,7 @@ class StepperContent extends Component {
 
     }
 
-    componentDidMount() {
-        this.props.getUser();
-
-        //  const users = [];
-        //  const orders = [];
-        //  const slots = {
-        //     small: [],
-        //     big: []
-        // };
-        //
-        // if(!LS._isExists()) {
-        //     LS.set('users', users);
-        //     LS.set('orders', orders);
-        //     LS.set('slots', slots);
-        // }
-    }
-
     
-
     handleHalls = () => {
         const {getSlots} = this.props;
         getSlots(this.props.hall);
@@ -176,4 +158,4 @@ export default connect((state) => {
         phone: state.user.phone,
         order: state.order
     }
-}, {getUser, getSlots, reservation})(StepperContent)
+}, {getSlots, reservation})(StepperContent)

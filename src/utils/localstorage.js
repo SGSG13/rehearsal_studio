@@ -17,14 +17,53 @@ export default class LS {
     }
 
     static set(field, data = {}) {
-        let dataToStorage = {};
+        // let dataToStorage = {};
+        //
+        // if (field) {
+        //     dataToStorage = LS.get();
+        //     if (!dataToStorage) dataToStorage = {};
+        //     dataToStorage[ field ] = data;
+        // } else {
+        //     dataToStorage = data;
+        // }
 
-        if (field) {
-            dataToStorage = LS.get(); 
-            if (!dataToStorage) dataToStorage = {};
-            dataToStorage[ field ] = data;
-        } else {
-            dataToStorage = data;
+        let dataToStorage = LS.get();
+        if (!dataToStorage) dataToStorage = {
+            users: [],
+            orders: [],
+            slots: {
+                small: [],
+                big: []
+            }
+        };
+
+       const addSlots = (arr, newSlot) => {
+            if(arr.some(localSlot => localSlot.date === newSlot.date ? true : false)) {
+                return arr.map(localSlot =>{
+                    if(localSlot.date === newSlot.date){
+                        return {...localSlot, slots: localSlot.slots.concat(newSlot.slots)}
+                    } return localSlot
+                })
+            } else {
+                return arr.concat(newSlot)
+            }
+        };
+
+        
+        switch (field) {
+            case 'users':
+                dataToStorage = {...dataToStorage, users: dataToStorage.users.concat(data)};
+                break;
+            case 'orders':
+                dataToStorage = {...dataToStorage, orders: dataToStorage.orders.concat(data)};
+                break;
+            case 'slots':
+                const hall = data.hall;
+                const newSlot = data.slot;
+                dataToStorage = {...dataToStorage, slots: {...dataToStorage.slots, [hall]: addSlots(dataToStorage.slots[hall], newSlot)}};
+                break;
+            default:
+                dataToStorage[ field ] = data;
         }
 
         localStorage.setItem(config.localStorage.name, JSON.stringify(dataToStorage))

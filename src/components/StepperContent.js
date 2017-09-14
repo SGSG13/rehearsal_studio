@@ -9,6 +9,7 @@ import StepOrder from './StepOrder'
 
 import {getUser} from '../AC'
 import {getSlots} from '../AC'
+import {reservation} from '../AC'
 
 
 import {LS} from '../utils'
@@ -20,7 +21,7 @@ class StepperContent extends Component {
 
         this.state = {
             finished: false,
-            stepIndex: 0,
+            stepIndex: 0
         };
 
     }
@@ -28,27 +29,18 @@ class StepperContent extends Component {
     componentDidMount() {
         this.props.getUser();
 
-
+        //  const users = [];
+        //  const orders = [];
         //  const slots = {
-        //     small: [
-        //         {
-        //             date: '13-9-2017',
-        //             slots: ['1', '3']
-        //         },
-        //         {
-        //             date: '14-9-2017',
-        //             slots: ['2']
-        //         }
-        //     ],
-        //     big: [
-        //         {
-        //             date: '13-9-2017',
-        //             slots: ['1']
-        //         }
-        //     ]
+        //     small: [],
+        //     big: []
         // };
         //
-        // LS.set('slots', slots)
+        // if(!LS._isExists()) {
+        //     LS.set('users', users);
+        //     LS.set('orders', orders);
+        //     LS.set('slots', slots);
+        // }
     }
 
     
@@ -56,6 +48,12 @@ class StepperContent extends Component {
     handleHalls = () => {
         const {getSlots} = this.props;
         getSlots(this.props.hall);
+        this.handleNext();
+    };
+
+    handleOrder = () => {
+        const {reservation} = this.props;
+        reservation();
         this.handleNext();
     };
 
@@ -106,7 +104,7 @@ class StepperContent extends Component {
             case 1:
                 return this.handleNext;
             case 2:
-                return this.handleNext;
+                return this.handleOrder;
             default:
                 return this.handleNext
         }
@@ -178,4 +176,4 @@ export default connect((state) => {
         phone: state.user.phone,
         order: state.order
     }
-}, {getUser, getSlots})(StepperContent)
+}, {getUser, getSlots, reservation})(StepperContent)

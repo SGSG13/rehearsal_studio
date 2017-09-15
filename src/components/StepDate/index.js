@@ -1,11 +1,18 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 import RoomSlots from './RoomSlots'
 import SelectDate from './SelectDate'
-import {connect} from 'react-redux'
-import {setSlots} from '../AC'
-import {filtratedSlotsSelector} from '../selectors'
+import {setSlots} from '../../AC'
+import {filtratedSlotsSelector} from '../../selectors'
 
 class StepDate extends Component {
+
+    static propTypes = {
+        // from connect
+        booked: PropTypes.array.isRequired
+    };
+    
     render() {
         return (
             <div className="row">

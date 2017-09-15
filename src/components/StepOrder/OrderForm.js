@@ -1,16 +1,27 @@
-import React, {Component} from 'react';
-import Subheader from 'material-ui/Subheader';
-import TextField from 'material-ui/TextField';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setInfo} from '../AC'
+import Subheader from 'material-ui/Subheader'
+import TextField from 'material-ui/TextField'
+import {setInfo} from '../../AC'
 
 class OrderForm extends Component {
 
-    state = {
-        band: '',
-        phone: ''
+    static propTypes = {
+        // from connect
+        user: PropTypes.object.isRequired,
+        setInfo: PropTypes.func.isRequired
     };
+    
+    constructor(props) {
+        super(props);
 
+        this.state = {
+            band: '',
+            phone: ''
+        };
+    }
+    
     handleChange = type => ev => {
         const {value} = ev.target;
         switch(type){
@@ -39,10 +50,8 @@ class OrderForm extends Component {
             band, phone
         })
     }
-
-
+    
     render() {
-
         return (
             <div className="col-lg-5">
                 <Subheader>Ваши данные</Subheader>
@@ -62,7 +71,6 @@ class OrderForm extends Component {
         );
     }
 }
-
 
 export default connect((state) => {
     return {

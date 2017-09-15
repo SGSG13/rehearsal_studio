@@ -1,5 +1,4 @@
-import config from '../config.js';
-
+import config from '../config.js'
 
 export default class LS {
     
@@ -12,22 +11,12 @@ export default class LS {
 
             return undefined;
         }
-
         return undefined;
     }
 
     static set(field, data = {}) {
-        // let dataToStorage = {};
-        //
-        // if (field) {
-        //     dataToStorage = LS.get();
-        //     if (!dataToStorage) dataToStorage = {};
-        //     dataToStorage[ field ] = data;
-        // } else {
-        //     dataToStorage = data;
-        // }
-
         let dataToStorage = LS.get();
+       
         if (!dataToStorage) dataToStorage = {
             users: [],
             orders: [],
@@ -75,7 +64,7 @@ export default class LS {
                 dataToStorage = {...dataToStorage, slots: {...dataToStorage.slots, [hall]: addSlots(dataToStorage.slots[hall], newSlot)}};
                 break;
             default:
-                dataToStorage[ field ] = data;
+                dataToStorage[field] = data;
         }
 
         localStorage.setItem(config.localStorage.name, JSON.stringify(dataToStorage))

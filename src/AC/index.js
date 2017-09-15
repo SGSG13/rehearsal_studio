@@ -1,13 +1,15 @@
-import {GET_USER} from '../constants'
-import {GET_SLOTS} from '../constants'
-import {SET_DATE} from '../constants'
-import {SET_HALL} from '../constants'
-import {SET_SLOTS} from '../constants'
-import {DEL_SLOT} from '../constants'
-import {SET_INFO} from '../constants'
-import {SET_ORDER} from '../constants'
-import {DEFAULT_ORDER} from '../constants'
-import {LS, delay, randomId} from '../utils';
+import {
+    GET_USER,
+    GET_SLOTS,
+    SET_DATE,
+    SET_HALL,
+    SET_SLOTS,
+    DEL_SLOT,
+    SET_INFO,
+    SET_ORDER,
+    DEFAULT_ORDER
+} from '../constants'
+import {LS,randomId} from '../utils'
 import {dateToString} from '../utils/dateToString'
 
 export function getUser() {
@@ -20,13 +22,11 @@ export function getUser() {
         
         LS.set('save_user',newUser);
         user = newUser;
-        
     }else{
         user = LS.get('save_user');
 
         let users = LS.get('users');
         if(users.length > 0){
-            console.log('filter');
           const filterUser = users.filter(localUser => localUser.userID === user.userID ? true : false);
             if(filterUser.length > 0) user = {...filterUser[0], orders: []};
         }
@@ -42,7 +42,6 @@ export function getUser() {
 
 export function getSlots(hall) {
     const booked = LS.get('slots')[hall];
-
     return (dispatch) => {
             dispatch({
                 type: GET_SLOTS,
@@ -91,9 +90,7 @@ export function setInfo(band, phone) {
 }
 
 export function reservation() {
-    
     return (dispatch, getState) => {
-
         const orderId = getState().order.id;
         dispatch({
             type: SET_ORDER,
@@ -109,6 +106,7 @@ export function reservation() {
                 slots: order.slots
             }
         };
+        
         LS.set('users',user);
         LS.set('orders',order);
         LS.set('slots',slots);
@@ -123,7 +121,6 @@ export function reservation() {
                 slots: []
             }
         });
-
     };
 }
 

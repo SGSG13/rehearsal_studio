@@ -1,20 +1,26 @@
-import React, {Component} from 'react';
-import {Step, Stepper, StepLabel} from 'material-ui/Stepper';
-import RaisedButton from 'material-ui/RaisedButton';
-import FlatButton from 'material-ui/FlatButton';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
+import {Step, Stepper, StepLabel} from 'material-ui/Stepper'
+import RaisedButton from 'material-ui/RaisedButton'
+import FlatButton from 'material-ui/FlatButton'
 import StepHalls from './StepHalls'
 import StepDate from './StepDate'
 import StepOrder from './StepOrder'
-
-
-import {getSlots} from '../AC'
-import {reservation} from '../AC'
-
-
-import {LS} from '../utils'
+import {getSlots, reservation} from '../AC'
 
 class StepperContent extends Component {
+
+    static propTypes = {
+        // from connect
+        hall: PropTypes.string.isRequired,
+        slots: PropTypes.array.isRequired,
+        band: PropTypes.string.isRequired,
+        phone: PropTypes.string.isRequired,
+        order: PropTypes.object.isRequired,
+        getSlots: PropTypes.func.isRequired,
+        reservation: PropTypes.func.isRequired
+    };
 
     constructor(props) {
         super(props);
@@ -23,22 +29,18 @@ class StepperContent extends Component {
             finished: false,
             stepIndex: 0
         };
-
     }
 
-    
     handleHalls = () => {
-        const {getSlots} = this.props;
-        getSlots(this.props.hall);
+        const {getSlots, hall} = this.props;
+        getSlots(hall);
         this.handleNext();
     };
 
     handleOrder = () => {
-        const {reservation} = this.props;
-        reservation();
+        this.props. reservation();
         this.handleNext();
     };
-
 
     handleNext = () => {
         const {stepIndex} = this.state;
@@ -75,7 +77,7 @@ class StepperContent extends Component {
             case 2:
                 return <StepOrder/>;
             default:
-                return 'You\'re a long way from home sonny jim!';
+                return <StepHalls/>;
         }
     }
 
@@ -112,17 +114,16 @@ class StepperContent extends Component {
                 </Stepper>
                 <div style={contentStyle}>
                     {finished ? (
-                        <p>
-                            <a
-                                href="#"
-                                onClick={(event) => {
-                  event.preventDefault();
-                  this.setState({stepIndex: 0, finished: false});
-                }}
-                            >
-                                Click here
-                            </a> to reset the example.
-                        </p>
+                        <div>
+                            <h4>Ваш заказ забронирован</h4>
+                            <RaisedButton
+                                label='Забронировать ещё'
+                                primary={true}
+                                onClick={() => {
+                                    this.setState({stepIndex: 0, finished: false});
+                                 }}
+                            />
+                        </div>
                     ) : (
                         <div>
                             <div>{this.getStepContent(stepIndex)}</div>
@@ -132,7 +133,6 @@ class StepperContent extends Component {
                                     disabled={stepIndex === 0}
                                     onClick={this.handlePrev}
                                     style={{marginRight: 12}}
-
                                 />
                                 <RaisedButton
                                     label={stepIndex === 2 ? 'Бронировать' : 'Вперёд'}

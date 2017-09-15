@@ -1,9 +1,9 @@
-import React, {Component} from 'react';
-import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
-import Paper from 'material-ui/Paper';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setHall} from '../AC'
-import {getUser} from '../AC'
+import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
+import Paper from 'material-ui/Paper'
+import {setHall, getUser} from '../../AC'
 
 const styles = {
     radioButton: {
@@ -12,7 +12,6 @@ const styles = {
         width: '50%'
     }
 };
-
 const stylePaper1 = {
     height: 300,
     width: "47%",
@@ -22,8 +21,6 @@ const stylePaper1 = {
     display: 'inline-block',
     backgroundImage: 'url(img/1.jpg)'
 };
-
-
 const stylePaper2 = {
     height: 300,
     width: "47%",
@@ -37,13 +34,19 @@ const stylePaper2 = {
 
 class StepHalls extends Component {
 
+    static propTypes = {
+        // from connect
+        hall: PropTypes.string.isRequired,
+        setHall: PropTypes.func.isRequired,
+        getUser: PropTypes.func.isRequired
+    };
+
     selectHall = (ev, val) => {
         this.props.setHall(val);
     };
 
     componentDidMount() {
         this.props.getUser();
-
     }
 
     render() {

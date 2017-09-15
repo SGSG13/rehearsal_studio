@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
+import {connect} from 'react-redux'
 import {
     Table,
     TableBody,
@@ -6,13 +8,17 @@ import {
     TableHeaderColumn,
     TableRow,
     TableRowColumn
-} from 'material-ui/Table';
-import Subheader from 'material-ui/Subheader';
+} from 'material-ui/Table'
+import Subheader from 'material-ui/Subheader'
 import OrderRow from './OrderRow'
-import {connect} from 'react-redux'
-import {deleteSlot} from '../AC'
+import {deleteSlot} from '../../AC'
 
 class OrderList extends Component {
+
+    static propTypes = {
+        // from connect
+        order: PropTypes.object.isRequired,
+    };
     
     getSum = (slots) => {
         let sum = 0;
@@ -51,7 +57,6 @@ class OrderList extends Component {
         );
     }
 }
-
 
 export default connect((state) => {
     return {

@@ -1,10 +1,11 @@
-import React, {Component} from 'react';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import MenuItem from 'material-ui/MenuItem';
-
+import React, {Component} from 'react'
+import AppBar from 'material-ui/AppBar'
+import Drawer from 'material-ui/Drawer'
+import MenuItem from 'material-ui/MenuItem'
+import {NavLink} from 'react-router-dom'
 
 class NavBar extends Component {
+   
     constructor(props) {
         super(props);
 
@@ -13,9 +14,17 @@ class NavBar extends Component {
         }
     }
 
-    handleToggle = () => this.setState({isOpen: !this.state.isOpen});
+    handleToggle = () => {
+        this.setState({
+            isOpen: !this.state.isOpen
+        });
+    }; 
 
-    handleClose = () => this.setState({isOpen: false});
+    handleClose = () => {
+        this.setState({
+            isOpen: false
+        });
+    }; 
 
     render() {
         return (
@@ -31,17 +40,13 @@ class NavBar extends Component {
                     open={this.state.isOpen}
                     onRequestChange={(isOpen) => this.setState({isOpen})}
                 >
-                    <MenuItem onClick={this.handleClose}>Главная</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Фотогалерея</MenuItem>
-                    <MenuItem onClick={this.handleClose}>О нас</MenuItem>
-                    <MenuItem onClick={this.handleClose}>Контакты</MenuItem>
+                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'red'}}  to="/" exact>Бронирование</NavLink></MenuItem>
+                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'red'}}  to="/contacts">Контакты</NavLink></MenuItem>
+                    <MenuItem onClick={this.handleClose}><NavLink  activeStyle={{color: 'red'}} to="/about">О нас</NavLink></MenuItem>
                 </Drawer>
-                
             </div>
-
         );
     }
 }
-
 
 export default NavBar;

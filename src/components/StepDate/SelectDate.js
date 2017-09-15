@@ -1,22 +1,27 @@
-import React, {Component} from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import DatePicker from 'material-ui/DatePicker';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {setDate} from '../AC'
+import RaisedButton from 'material-ui/RaisedButton'
+import DatePicker from 'material-ui/DatePicker'
+import {setDate} from '../../AC'
 
 const styleB = {
     margin: 12,
     display: 'inline-block'
 };
-
 const styleP = {
     margin: 12,
     display: 'inline-block',
     width: 140
 };
 
-
 class SelectDate extends Component {
+
+    static propTypes = {
+        // from connect
+        date: PropTypes.object.isRequired,
+        setDate: PropTypes.func.isRequired
+    };
 
     handleChange = (event, date) => {
         this.props.setDate(date);

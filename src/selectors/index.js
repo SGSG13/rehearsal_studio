@@ -1,5 +1,5 @@
 import {createSelector} from 'reselect'
-import {dateToString} from '../utils/dateToString';
+import {dateToString} from '../utils/dateToString'
 
 const bookedGetter = state => state.slots.booked;
 const dateGetter = state => state.order.date;
@@ -15,7 +15,6 @@ export const filtratedSlotsSelector = createSelector(bookedGetter, dateGetter, (
 
         if(filterBooked.length) newBooked = filterBooked
     }
-
     return newBooked
 });
 

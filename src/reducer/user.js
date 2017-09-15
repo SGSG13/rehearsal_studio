@@ -1,22 +1,25 @@
-import {GET_USER} from '../constants'
-import {SET_INFO} from '../constants'
-import {SET_ORDER} from '../constants'
+import {
+    GET_USER,
+    SET_INFO,
+    SET_ORDER
+} from '../constants'
 
-const initialState = {
+const initState = {
     userID: '',
     band: '',
     phone: '',
     orders: []
 };
 
-export default (state = initialState, action) => {
+export default (state = initState, action) => {
     const {type, user, band, phone, orderId} = action;
-    console.log('user', user);
+    
     switch (type) {
         case GET_USER:
             return{
                 ...state, ...user
             };
+        
         case SET_INFO:
             return{
                 ...state, band, phone

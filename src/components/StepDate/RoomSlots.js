@@ -1,16 +1,22 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {
     Table,
     TableBody,
     TableRow,
     TableRowColumn,
-
-} from 'material-ui/Table';
-import Subheader from 'material-ui/Subheader';
-
-
+} from 'material-ui/Table'
+import Subheader from 'material-ui/Subheader'
 
 class RoomSlots extends Component {
+
+    static propTypes = {
+        hall: PropTypes.string.isRequired,
+        slots: PropTypes.array.isRequired,
+        booked: PropTypes.array.isRequired,
+        setSlots: PropTypes.func.isRequired
+    };
+   
     constructor(props) {
         super(props);
 
@@ -32,17 +38,13 @@ class RoomSlots extends Component {
     handleRowSelection = (selectedRows) => {
         this.props.setSlots(selectedRows)
     };
-
     
-
     componentWillMount() {
         this.bookedSlot();
     }
-
     
     bookedSlot = () => {
         if(!Object.keys(this.props.booked).length || !this.props.booked[0].slots.length ) return;
-
         const booked = this.props.booked[0].slots;
         booked.forEach( num => {
             this.setState({

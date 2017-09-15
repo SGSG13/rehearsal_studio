@@ -1,15 +1,20 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {
     TableRow,
     TableRowColumn,
-
 } from 'material-ui/Table';
-import {dateToString} from '../utils/dateToString';
+import {dateToString} from '../../utils/dateToString'
 
 class OrderRow extends Component {
+
+    static propTypes = {
+        slot: PropTypes.number.isRequired,
+        order: PropTypes.object.isRequired,
+        deleteSlot: PropTypes.func.isRequired
+    };
     
     getTime = (slot) => {
-
         switch (slot) {
             case 0:
                 return '9:00-11:00';
@@ -35,9 +40,9 @@ class OrderRow extends Component {
     };
     
     deleteSlot = () => {
-        this.props.deleteSlot(this.props.slot);
+        const {deleteSlot, slot} = this.props;
+        deleteSlot(slot);
     };
-
     
     render() {
         const {order, slot} = this.props;
@@ -52,8 +57,6 @@ class OrderRow extends Component {
         )
     }
 }
-
-
 
 export default OrderRow
 

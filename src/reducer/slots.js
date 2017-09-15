@@ -1,14 +1,20 @@
 import {GET_SLOTS} from '../constants'
+import {Record} from 'immutable'
 
-export default (state = {}, action) => {
-    const {type, booked} = action;
-   
+const SlotsRecord = Record({
+    booked: []
+});
+
+const defaultState = new SlotsRecord();
+
+export default (state = defaultState, action) => {
+    const {type, payload} = action;
+
     switch (type) {
+        
         case GET_SLOTS:
-            return{
-                ...state, booked
-            };
-
+            return state.set('booked', payload.booked);
+        
         default:
             return state;
     }

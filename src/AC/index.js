@@ -23,11 +23,11 @@ export function getUser() {
         LS.set('save_user',newUser);
         user = newUser;
     }else{
-        user = LS.get('save_user');
-
+        const saveUser = LS.get('save_user');
         let users = LS.get('users');
+        
         if(users.length > 0){
-          const filterUser = users.filter(localUser => localUser.userID === user.userID ? true : false);
+          const filterUser = users.filter(localUser => localUser.userID === saveUser.userID ? true : false);
             if(filterUser.length > 0) user = {...filterUser[0], orders: []};
         }
     }
@@ -35,7 +35,7 @@ export function getUser() {
     return (dispatch) => {
         dispatch({
             type: GET_USER,
-            user
+            payload: { user }
         });
     };
 }
@@ -45,7 +45,7 @@ export function getSlots(hall) {
     return (dispatch) => {
             dispatch({
                 type: GET_SLOTS,
-                booked
+                payload: { booked }
             });
     };
 }
@@ -53,31 +53,29 @@ export function getSlots(hall) {
 export function deleteSlot(delSlot) {
     return {
         type: DEL_SLOT,
-        delSlot
+        payload: { delSlot }
     }
 }
 
 
 export function setDate(date) {
-    const slots = [];
     return {
         type: SET_DATE,
-        date,
-        slots
+        payload: { date }
     }
 }
 
 export function setHall(hall) {
     return {
         type: SET_HALL,
-        hall
+        payload: { hall }
     }
 }
 
 export function setSlots(slots) {
     return {
         type: SET_SLOTS,
-        slots
+        payload: { slots }
     }
 }
 
@@ -85,7 +83,10 @@ export function setSlots(slots) {
 export function setInfo(band, phone) {
     return {
         type: SET_INFO,
-        band, phone
+        payload: {
+            band,
+            phone
+        }
     }
 }
 
@@ -94,7 +95,7 @@ export function reservation() {
         const orderId = getState().order.id;
         dispatch({
             type: SET_ORDER,
-            orderId
+            payload: { orderId }
         });
 
         const {user, order} = getState();
@@ -106,6 +107,13 @@ export function reservation() {
                 slots: order.slots
             }
         };
+        const dfltOrder = {
+            id: randomId(),
+            userID: '',
+            date: new Date(),
+            hall: 'big',
+            slots: []
+        };
         
         LS.set('users',user);
         LS.set('orders',order);
@@ -113,13 +121,7 @@ export function reservation() {
 
         dispatch({
             type: DEFAULT_ORDER,
-            dfltOrder: {
-                id: randomId(),
-                userID: '',
-                date: new Date(),
-                hall: 'big',
-                slots: []
-            }
+            payload : {dfltOrder }
         });
     };
 }

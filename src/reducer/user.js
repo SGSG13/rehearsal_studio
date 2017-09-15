@@ -3,30 +3,37 @@ import {
     SET_INFO,
     SET_ORDER
 } from '../constants'
+import {Record} from 'immutable'
 
-const initState = {
+const UsersRecord = Record({
     userID: '',
     band: '',
     phone: '',
     orders: []
-};
+});
 
-export default (state = initState, action) => {
-    const {type, user, band, phone, orderId} = action;
+const defaultState = new UsersRecord();
+
+export default (state = defaultState, action) => {
+    const {type, payload} = action;
     
     switch (type) {
         case GET_USER:
-            return{
-                ...state, ...user
-            };
-        
+            const {user} = payload;
+            return state
+                .set('userID', user.userID)
+                .set('band', user.band)
+                .set('band', user.phone);   
+
         case SET_INFO:
-            return{
-                ...state, band, phone
-            };
+            const {band, phone} = payload;
+            return state
+                .set('band', band)
+                .set('phone', phone);    
 
         case SET_ORDER:
-            return {...state, orders: state.orders.concat(orderId)};
+            const {orderId} = payload;
+            return state.update('orders', orders => orders.concat(orderId));
 
         default:
             return state;

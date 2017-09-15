@@ -7,47 +7,49 @@ import {
     DEFAULT_ORDER
 } from '../constants'
 import {randomId} from '../utils'
+import {Record} from 'immutable'
 
-const initState = {
+const OrderRecord = Record({
     id: randomId(),
     userID: '',
     date: new Date(),
     hall: 'big',
     slots: []
-};
+});
 
-export default (state = initState, action) => {
-    const {type, date, hall, slots, user, delSlot, dfltOrder} = action;
+const defaultState = new OrderRecord();
+
+export default (state = defaultState, action) => {
+    const {type, payload} = action;
   
     switch (type) {
         case SET_DATE:
-            return{
-                ...state, date, slots
-            };
+            return state
+                .set('date', payload.date)
+                .set('slots', []);
         
         case SET_HALL:
-            return{
-                ...state, hall
-            };
+            return state.set('hall', payload.hall);
         
         case SET_SLOTS:
-            return{
-                ...state, slots
-            };
+            return state.set('slots', payload.slots);
         
         case GET_USER:
-            return{
-                ...state, userID: user.userID
-            };
+            const {user} = payload;
+            return state.set('userID', user.userID);
         
         case DEL_SLOT:
-            return {...state, slots: state.slots.filter(slot => slot !== delSlot)};
+            return state.update('slots', slots => slots.filter(slot => slot !== payload.delSlot));
         
         case DEFAULT_ORDER:
-            return{
-                ...state, ...dfltOrder
-            };
-        
+            const {dfltOrder} = payload;
+            return state
+                .set('id', dfltOrder.id)
+                .set('userID', dfltOrder.userID)
+                .set('date', dfltOrder.date)
+                .set('hall', dfltOrder.hall)
+                .set('slots', dfltOrder.slots);
+
         default:
             return state;
     }

@@ -15,8 +15,8 @@ class StepperContent extends Component {
         // from connect
         hall: PropTypes.string.isRequired,
         slots: PropTypes.array.isRequired,
-        band: PropTypes.string.isRequired,
-        phone: PropTypes.string.isRequired,
+        band: PropTypes.string,
+        phone: PropTypes.string,
         order: PropTypes.object.isRequired,
         getSlots: PropTypes.func.isRequired,
         reservation: PropTypes.func.isRequired

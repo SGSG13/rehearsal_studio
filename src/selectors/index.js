@@ -5,7 +5,7 @@ const bookedGetter = state => state.slots.booked;
 const dateGetter = state => state.order.date;
 
 export const filtratedSlotsSelector = createSelector(bookedGetter, dateGetter, (booked, date) =>{
-    let newBooked = {};
+    let newBooked = [];
     const dateString = dateToString(date);
 
     if(booked.length) {

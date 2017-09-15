@@ -40,7 +40,7 @@ class NavBar extends Component {
                     open={this.state.isOpen}
                     onRequestChange={(isOpen) => this.setState({isOpen})}
                 >
-                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'red'}}  to="/" exact>Бронирование</NavLink></MenuItem>
+                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'red'}}  to="/" exact >Бронирование</NavLink></MenuItem>
                     <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'red'}}  to="/contacts">Контакты</NavLink></MenuItem>
                     <MenuItem onClick={this.handleClose}><NavLink  activeStyle={{color: 'red'}} to="/about">О нас</NavLink></MenuItem>
                 </Drawer>

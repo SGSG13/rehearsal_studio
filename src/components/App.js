@@ -16,7 +16,6 @@ class App extends Component {
                         <Route path="/contacts" component = {Contacts}/>
                         <Route path="/about" component = {About}/>
                     </Switch>
-
                 </div>
             </BrowserRouter>
             

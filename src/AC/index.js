@@ -94,7 +94,7 @@ export function setPhone(phone) {
     }
 }
 
-export function reservation() {
+export function reserv() {
     return (dispatch, getState) => {
         const orderId = getState().order.id;
         dispatch({

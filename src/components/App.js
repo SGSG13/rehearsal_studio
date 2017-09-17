@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import NavBar from './NavBar'
-import StepperContent from './StepperContent'
+import Reservation from './Reservation'
 import Contacts from './Contacts'
 import Halls from './Halls'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
@@ -12,7 +12,7 @@ class App extends Component {
                 <div>
                     <NavBar/>
                     <Switch>
-                        <Route path="/" component = {StepperContent} exact/>
+                        <Route path="/" component = {Reservation} exact/>
                         <Route path="/contacts" component = {Contacts}/>
                         <Route path="/halls" component = {Halls}/>
                     </Switch>

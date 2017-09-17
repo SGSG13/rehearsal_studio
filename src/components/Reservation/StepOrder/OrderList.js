@@ -11,7 +11,7 @@ import {
 } from 'material-ui/Table'
 import Subheader from 'material-ui/Subheader'
 import OrderRow from './OrderRow'
-import {deleteSlot} from '../../AC'
+import {deleteSlot} from '../../../AC'
 
 class OrderList extends Component {
 

@@ -4,7 +4,7 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import {dateToString} from '../../utils/dateToString'
+import {dateToString} from '../../../utils/dateToString'
 
 class OrderRow extends Component {
 

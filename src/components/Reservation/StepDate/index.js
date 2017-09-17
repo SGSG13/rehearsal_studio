@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import RoomSlots from './RoomSlots'
 import SelectDate from './SelectDate'
-import {setSlots} from '../../AC'
-import {filtratedSlotsSelector} from '../../selectors'
+import {setSlots} from '../../../AC'
+import {filtratedSlotsSelector} from '../../../selectors'
 
 class StepDate extends Component {
 

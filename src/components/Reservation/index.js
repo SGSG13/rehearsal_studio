@@ -7,9 +7,9 @@ import FlatButton from 'material-ui/FlatButton'
 import StepHalls from './StepHalls'
 import StepDate from './StepDate'
 import StepOrder from './StepOrder'
-import {getSlots, reservation} from '../AC'
+import {getSlots, reserv} from '../../AC'
 
-class StepperContent extends Component {
+class Reservation extends Component {
 
     static propTypes = {
         // from connect
@@ -19,7 +19,7 @@ class StepperContent extends Component {
         phone: PropTypes.string,
         order: PropTypes.object.isRequired,
         getSlots: PropTypes.func.isRequired,
-        reservation: PropTypes.func.isRequired
+        reserv: PropTypes.func.isRequired
     };
 
     constructor(props) {
@@ -159,4 +159,4 @@ export default connect((state) => {
         phone: state.user.phone,
         order: state.order
     }
-}, {getSlots, reservation})(StepperContent)
+}, {getSlots, reserv})(Reservation)

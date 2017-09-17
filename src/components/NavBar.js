@@ -30,7 +30,7 @@ class NavBar extends Component {
         return (
             <div>
                 <AppBar
-                    title="SG13 Studio"
+                    title="SG13 Studio [version 0.0.1 Beta]"
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                     onLeftIconButtonTouchTap = {this.handleToggle}
                 />
@@ -40,9 +40,9 @@ class NavBar extends Component {
                     open={this.state.isOpen}
                     onRequestChange={(isOpen) => this.setState({isOpen})}
                 >
-                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'red'}}  to="/" exact >Бронирование</NavLink></MenuItem>
-                    <MenuItem onClick={this.handleClose}><NavLink  activeStyle={{color: 'red'}} to="/halls">Залы</NavLink></MenuItem>
-                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'red'}}  to="/contacts">Контакты</NavLink></MenuItem>
+                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'rgb(0, 188, 212)'}}  to="/" exact >Бронирование</NavLink></MenuItem>
+                    <MenuItem onClick={this.handleClose}><NavLink  activeStyle={{color: 'rgb(0, 188, 212)'}} to="/halls">Залы</NavLink></MenuItem>
+                    <MenuItem onClick={this.handleClose}><NavLink activeStyle={{color: 'rgb(0, 188, 212)'}}  to="/contacts">Контакты</NavLink></MenuItem>
                 </Drawer>
             </div>
         );

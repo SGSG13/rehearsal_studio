@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Subheader from 'material-ui/Subheader'
 import TextField from 'material-ui/TextField'
-import {setBand, setPhone} from '../../AC'
+import {setBand, setPhone} from '../../../AC'
 
 class OrderForm extends Component {
 

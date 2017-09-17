@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import RaisedButton from 'material-ui/RaisedButton'
 import DatePicker from 'material-ui/DatePicker'
 import Subheader from 'material-ui/Subheader'
-import {setDate} from '../../AC'
+import {setDate} from '../../../AC'
 
 const styleB = {
     margin: 12,

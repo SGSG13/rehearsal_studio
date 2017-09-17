@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
 import Paper from 'material-ui/Paper'
-import {setHall, getUser} from '../../AC'
+import {setHall, getUser} from '../../../AC'
 
 const styles = {
     radioButton: {

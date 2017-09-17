@@ -62,7 +62,7 @@ class RoomSlots extends Component {
         const {hall} = this.props;
         return (
             <div>
-                <Subheader>{hall === 'big' ? 'Большой' : 'Малый'} зал</Subheader>
+                <Subheader>{hall === 'metal' ? 'Metal Hall' : 'British Hall'}</Subheader>
                 <Table multiSelectable onRowSelection={this.handleRowSelection}>
                     <TableBody displayRowCheckbox={false} deselectOnClickaway = {false}>
                         <TableRow className={this.getClassName(0)}

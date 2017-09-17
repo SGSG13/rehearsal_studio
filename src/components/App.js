@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 import NavBar from './NavBar'
 import StepperContent from './StepperContent'
 import Contacts from './Contacts'
-import About from './About'
+import Halls from './Halls'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 
 class App extends Component {
@@ -14,7 +14,7 @@ class App extends Component {
                     <Switch>
                         <Route path="/" component = {StepperContent} exact/>
                         <Route path="/contacts" component = {Contacts}/>
-                        <Route path="/about" component = {About}/>
+                        <Route path="/halls" component = {Halls}/>
                     </Switch>
                 </div>
             </BrowserRouter>

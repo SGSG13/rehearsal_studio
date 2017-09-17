@@ -5,7 +5,8 @@ import {
     SET_HALL,
     SET_SLOTS,
     DEL_SLOT,
-    SET_INFO,
+    SET_BAND,
+    SET_PHONE,
     SET_ORDER,
     DEFAULT_ORDER
 } from '../constants'
@@ -80,13 +81,16 @@ export function setSlots(slots) {
 }
 
 
-export function setInfo(band, phone) {
+export function setBand(band) {
     return {
-        type: SET_INFO,
-        payload: {
-            band,
-            phone
-        }
+        type: SET_BAND,
+        payload: { band }
+    }
+}
+export function setPhone(phone) {
+    return {
+        type: SET_PHONE,
+        payload: { phone }
     }
 }
 
@@ -111,7 +115,7 @@ export function reservation() {
             id: randomId(),
             userID: '',
             date: new Date(),
-            hall: 'big',
+            hall: 'metal',
             slots: []
         };
         

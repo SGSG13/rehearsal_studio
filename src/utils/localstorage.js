@@ -21,8 +21,8 @@ export default class LS {
             users: [],
             orders: [],
             slots: {
-                small: [],
-                big: []
+                metal: [],
+                british: []
             }
         };
 

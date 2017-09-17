@@ -54,15 +54,15 @@ class StepHalls extends Component {
             <div>
                 <Paper style={stylePaper1} zDepth={2} />
                 <Paper style={stylePaper2} zDepth={2} />
-                <RadioButtonGroup name="select halls" onChange = {this.selectHall} defaultSelected={this.props.hall}>
+                <RadioButtonGroup name="halls" onChange = {this.selectHall} defaultSelected={this.props.hall}>
                     <RadioButton
-                        value="big"
-                        label= "Большой зал"
+                        value="metal"
+                        label= "Metal Hall"
                         style={styles.radioButton}
                     />
                     <RadioButton
-                        value="small"
-                        label="Малый зал"
+                        value="british"
+                        label="British Hall"
                         style={styles.radioButton}
                     />
                 </RadioButtonGroup>

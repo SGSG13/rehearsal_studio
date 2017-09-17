@@ -48,7 +48,7 @@ class OrderRow extends Component {
         const {order, slot} = this.props;
         return (
             <TableRow key = {slot} >
-                <TableRowColumn>{order.hall === 'big' ? 'Большой' : 'Малый'}</TableRowColumn>
+                <TableRowColumn>{order.hall === 'metal' ? 'Metal Hall' : 'British Hall'}</TableRowColumn>
                 <TableRowColumn>{dateToString(order.date)}</TableRowColumn>
                 <TableRowColumn>{this.getTime(slot)}</TableRowColumn>
                 <TableRowColumn>{this.getPrice(slot)} руб.</TableRowColumn>

@@ -101,6 +101,7 @@ class StepperContent extends Component {
 
         return (
             <div style={{width: '100%', maxWidth: 1000, margin: 'auto'}}>
+                <h2 style={{textAlign: 'center'}}>Бронирование</h2>
                 <Stepper activeStep={stepIndex}>
                     <Step>
                         <StepLabel>Выбор зала</StepLabel>

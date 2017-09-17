@@ -13,7 +13,7 @@ const OrderRecord = Record({
     id: randomId(),
     userID: '',
     date: new Date(),
-    hall: 'big',
+    hall: 'metal',
     slots: []
 });
 

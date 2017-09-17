@@ -3,14 +3,15 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Subheader from 'material-ui/Subheader'
 import TextField from 'material-ui/TextField'
-import {setInfo} from '../../AC'
+import {setBand, setPhone} from '../../AC'
 
 class OrderForm extends Component {
 
     static propTypes = {
         // from connect
         user: PropTypes.object.isRequired,
-        setInfo: PropTypes.func.isRequired
+        setBand: PropTypes.func.isRequired,
+        setPhone: PropTypes.func.isRequired
     };
     
     constructor(props) {
@@ -39,9 +40,12 @@ class OrderForm extends Component {
         }
     };
 
-    isValidField =() => {
-        const {band, phone} = this.state;
-        this.props.setInfo(band, phone);
+    setBandField = () => {
+        this.props.setBand(this.state.band);
+    };
+
+    setPhoneField = () => {
+        this.props.setPhone(this.state.phone);
     };
 
     componentWillMount() {
@@ -56,16 +60,18 @@ class OrderForm extends Component {
             <div className="col-lg-5">
                 <Subheader>Ваши данные</Subheader>
                 <TextField
+                    name="band"
                     floatingLabelText="Название группы"
                     value = {this.state.band}
                     onChange = {this.handleChange('band')}
-                    onBlur = {this.isValidField}
+                    onBlur = {this.setBandField}
                 /><br />
                 <TextField
+                    name="phone"
                     floatingLabelText="Ваш телефон"
                     value = {this.state.phone}
                     onChange = {this.handleChange('phone')}
-                    onBlur = {this.isValidField}
+                    onBlur = {this.setPhoneField}
                 /><br />
             </div>
         );
@@ -76,4 +82,4 @@ export default connect((state) => {
     return {
         user: state.user
     }
-}, {setInfo})(OrderForm)
+}, {setBand, setPhone})(OrderForm)

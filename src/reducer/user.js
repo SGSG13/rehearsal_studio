@@ -23,7 +23,7 @@ export default (state = defaultState, action) => {
             return state
                 .set('userID', user.userID)
                 .set('band', user.band)
-                .set('band', user.phone);   
+                .set('phone', user.phone);
 
         case SET_INFO:
             const {band, phone} = payload;

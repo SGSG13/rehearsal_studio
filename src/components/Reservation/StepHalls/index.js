@@ -4,32 +4,7 @@ import {connect} from 'react-redux'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton'
 import Paper from 'material-ui/Paper'
 import {setHall, getUser} from '../../../AC'
-
-const styles = {
-    radioButton: {
-        marginBottom: 16,
-        display: 'inline-block',
-        width: '50%'
-    }
-};
-const stylePaper1 = {
-    height: 300,
-    width: "47%",
-    margin: 20,
-    marginLeft: 0,
-    textAlign: 'center',
-    display: 'inline-block',
-    backgroundImage: 'url(img/1.jpg)'
-};
-const stylePaper2 = {
-    height: 300,
-    width: "47%",
-    margin: 20,
-    marginRight: 0,
-    textAlign: 'center',
-    display: 'inline-block',
-    backgroundImage: 'url(img/2.jpg)'
-};
+import './index.sass'
 
 
 class StepHalls extends Component {
@@ -51,21 +26,25 @@ class StepHalls extends Component {
 
     render() {
         return (
-            <div>
-                <Paper style={stylePaper1} zDepth={2} />
-                <Paper style={stylePaper2} zDepth={2} />
-                <RadioButtonGroup name="halls" onChange = {this.selectHall} defaultSelected={this.props.hall}>
-                    <RadioButton
-                        value="metal"
-                        label= "Metal Hall"
-                        style={styles.radioButton}
-                    />
-                    <RadioButton
-                        value="british"
-                        label="British Hall"
-                        style={styles.radioButton}
-                    />
-                </RadioButtonGroup>
+            <div className="row">
+                <div className="col-md-12">
+                    <div className="halls-img">
+                        <Paper className="hall hall-metal" zDepth={2} />
+                        <Paper className="hall hall-british" zDepth={2} />
+                    </div>    
+                    <RadioButtonGroup className="wrap-radio-btns" name="halls" onChange = {this.selectHall} defaultSelected={this.props.hall}>
+                        <RadioButton
+                            value="metal"
+                            label= "Metal Hall"
+                            className="radio-btn"
+                        />
+                        <RadioButton
+                            value="british"
+                            label="British Hall"
+                            className="radio-btn"
+                        />
+                    </RadioButtonGroup>
+                </div>
             </div>
         );
     }

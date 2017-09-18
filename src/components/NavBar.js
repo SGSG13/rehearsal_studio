@@ -30,7 +30,7 @@ class NavBar extends Component {
         return (
             <div>
                 <AppBar
-                    title="SG13 Studio [version 0.0.1 Beta]"
+                    title="SG13 Studio [Beta]"
                     iconClassNameRight="muidocs-icon-navigation-expand-more"
                     onLeftIconButtonTouchTap = {this.handleToggle}
                 />

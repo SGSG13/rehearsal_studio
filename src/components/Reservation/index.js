@@ -8,6 +8,7 @@ import StepHalls from './StepHalls'
 import StepDate from './StepDate'
 import StepOrder from './StepOrder'
 import {getSlots, reserv} from '../../AC'
+import './index.sass'
 
 class Reservation extends Component {
 
@@ -38,7 +39,7 @@ class Reservation extends Component {
     };
 
     handleOrder = () => {
-        this.props. reservation();
+        this.props. reserv();
         this.handleNext();
     };
 
@@ -97,26 +98,27 @@ class Reservation extends Component {
     render() {
         const {finished, stepIndex} = this.state;
         const {slots, band, phone, order} = this.props;
-        const contentStyle = {margin: '0 16px'};
 
         return (
-            <div style={{width: '100%', maxWidth: 1000, margin: 'auto'}}>
-                <h2 style={{textAlign: 'center'}}>Бронирование</h2>
-                <Stepper activeStep={stepIndex}>
-                    <Step>
-                        <StepLabel>Выбор зала</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Выбор даты и время</StepLabel>
-                    </Step>
-                    <Step>
-                        <StepLabel>Бронирование</StepLabel>
-                    </Step>
-                </Stepper>
-                <div style={contentStyle}>
+            <div className="container">
+                <h2 className="title-page">Бронирование</h2>
+                <div className="wrap-head-step">
+                    <Stepper activeStep={stepIndex} className="123">
+                        <Step className="head-step">
+                            <StepLabel>Выбор зала</StepLabel>
+                        </Step>
+                        <Step className="head-step">
+                            <StepLabel>Выбор даты и время</StepLabel>
+                        </Step>
+                        <Step className="head-step">
+                            <StepLabel>Бронирование</StepLabel>
+                        </Step>
+                    </Stepper>
+                </div>
+                <div className="step-content">
                     {finished ? (
-                        <div>
-                            <h4>Ваш заказ забронирован</h4>
+                        <div className="order-success">
+                            <h3>Ваш заказ забронирован</h3>
                             <RaisedButton
                                 label='Забронировать ещё'
                                 primary={true}
@@ -128,12 +130,12 @@ class Reservation extends Component {
                     ) : (
                         <div>
                             <div>{this.getStepContent(stepIndex)}</div>
-                            <div style={{marginTop: 30}}>
+                            <div className="order-buttons">
                                 <FlatButton
                                     label="Назад"
                                     disabled={stepIndex === 0}
                                     onClick={this.handlePrev}
-                                    style={{marginRight: 12}}
+                                    className="back-button"
                                 />
                                 <RaisedButton
                                     label={stepIndex === 2 ? 'Бронировать' : 'Вперёд'}

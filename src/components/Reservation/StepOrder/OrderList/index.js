@@ -11,7 +11,7 @@ import {
 } from 'material-ui/Table'
 import Subheader from 'material-ui/Subheader'
 import OrderRow from './OrderRow'
-import {deleteSlot} from '../../../AC'
+import {deleteSlot} from '../../../../AC'
 
 class OrderList extends Component {
 
@@ -32,7 +32,7 @@ class OrderList extends Component {
         const {order} = this.props;
         const slots = order.slots;
         return (
-            <div className="col-lg-7">
+            <div className="col-md-7">
                 <Subheader>Ваш заказ</Subheader>
                 <Table selectable = {false}>
                     <TableHeader displaySelectAll={false} adjustForCheckbox={false}>

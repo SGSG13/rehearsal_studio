@@ -1,0 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500')
+
+body
+  margin: 0
+  padding: 0
+  font-family: 'Roboto', sans-serif
+
+p
+  padding: 0
+  margin: 0
+
+a
+  color: rgba(0, 0, 0, 0.87)
+  &:hover
+    color: rgba(0, 0, 0, 0.87)
+    text-decoration: none
+
+.title-page
+  text-align: center
+  margin-bottom: 50px
+
+
+/*==========  Desktop First  ==========*/
+
+
+/* Medium Devices, Desktops */
+@media only screen and (max-width : 992px)
+  .hall
+    margin-bottom: 40px
+
+  .title-page
+    margin-bottom: 30px
+
+  .step-content
+    margin: 0 0
+
+  .halls-img
+    display: none
+
+  .wrap-radio-btns
+    margin: 40px 0
+
+  .order-form
+    padding-left: 0
+    margin-top: 50px
+
+/* Small Devices, Tablets */
+@media only screen and (max-width : 768px)
+  .select-date
+    margin-bottom: 50px
+
+/* Extra Small Devices, Phones */
+@media only screen and (max-width : 480px)
+  .wrap-head-step > div
+    flex-direction: column!important
+    align-items: stretch!important
+
+  .head-step
+    margin-left: -6px
+    & > span
+      height: 50px!important
+
+  .select-date, .room-slots
+    text-align: center
+
+    .show-date
+      margin: 30px auto
+
+
+
+
+

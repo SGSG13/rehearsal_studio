@@ -5,7 +5,7 @@ import {Provider} from 'react-redux'
 import App from './components/App'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import injectTapEventPlugin from 'react-tap-event-plugin'
-import './index.sass'
+import './main.sass'
 injectTapEventPlugin();
 
 render(

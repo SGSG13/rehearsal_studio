@@ -4,7 +4,10 @@ import {
     TableRow,
     TableRowColumn,
 } from 'material-ui/Table';
-import {dateToString} from '../../../utils/dateToString'
+import ActionDelete from 'material-ui/svg-icons/action/delete'
+import {red500, grey500} from 'material-ui/styles/colors';
+import {dateToString} from '../../../../../utils/dateToString'
+import './index.sass'
 
 class OrderRow extends Component {
 
@@ -47,12 +50,18 @@ class OrderRow extends Component {
     render() {
         const {order, slot} = this.props;
         return (
-            <TableRow key = {slot} >
+            <TableRow key = {slot} className="order-row">
                 <TableRowColumn>{order.hall === 'metal' ? 'Metal Hall' : 'British Hall'}</TableRowColumn>
                 <TableRowColumn>{dateToString(order.date)}</TableRowColumn>
                 <TableRowColumn>{this.getTime(slot)}</TableRowColumn>
                 <TableRowColumn>{this.getPrice(slot)} руб.</TableRowColumn>
-                <TableRowColumn><span onClick = {this.deleteSlot}>Х</span></TableRowColumn>
+                <TableRowColumn>
+                        <ActionDelete
+                            onClick = {this.deleteSlot}
+                            color={grey500}
+                            hoverColor={red500}
+                        />
+                </TableRowColumn>
             </TableRow>
         )
     }

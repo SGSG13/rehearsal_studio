@@ -3,7 +3,8 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import Subheader from 'material-ui/Subheader'
 import TextField from 'material-ui/TextField'
-import {setBand, setPhone} from '../../../AC'
+import {setBand, setPhone} from '../../../../AC'
+import './index.sass'
 
 class OrderForm extends Component {
 
@@ -57,22 +58,24 @@ class OrderForm extends Component {
     
     render() {
         return (
-            <div className="col-lg-5">
-                <Subheader>Ваши данные</Subheader>
-                <TextField
-                    name="band"
-                    floatingLabelText="Название группы"
-                    value = {this.state.band}
-                    onChange = {this.handleChange('band')}
-                    onBlur = {this.setBandField}
-                /><br />
-                <TextField
-                    name="phone"
-                    floatingLabelText="Ваш телефон"
-                    value = {this.state.phone}
-                    onChange = {this.handleChange('phone')}
-                    onBlur = {this.setPhoneField}
-                /><br />
+            <div className="col-md-5">
+                <div className="order-form">
+                    <Subheader>Ваши данные</Subheader>
+                    <TextField
+                        name="band"
+                        floatingLabelText="Название группы"
+                        value = {this.state.band}
+                        onChange = {this.handleChange('band')}
+                        onBlur = {this.setBandField}
+                    /><br />
+                    <TextField
+                        name="phone"
+                        floatingLabelText="Ваш телефон"
+                        value = {this.state.phone}
+                        onChange = {this.handleChange('phone')}
+                        onBlur = {this.setPhoneField}
+                    />
+                </div>
             </div>
         );
     }

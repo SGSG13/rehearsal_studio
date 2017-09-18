@@ -1,8 +1,12 @@
 import React, {Component} from 'react'
 import GoogleMapReact from 'google-map-react'
+import ActionRoom from 'material-ui/svg-icons/action/room'
+import {red500} from 'material-ui/styles/colors';
 import './map.sass'
 
-const Marker = () => <div className="marker"></div>;
+const Marker = () => <ActionRoom
+                        color={red500}
+                    />;
 
 export default class Map extends Component {
 

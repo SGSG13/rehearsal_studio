@@ -1,9 +1,9 @@
 var path = require('path');
 var webpack = require("webpack");
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var NODE_ENV = process.env.NODE_ENV;
-
 
 module.exports = {
     entry: [
@@ -29,33 +29,32 @@ module.exports = {
                 exclude: [/node_modules/]
             },
             {
-                test: /\.jpg$/,
+                test: /\.(png|jpg|gif|ico)$/,
+                loader: 'file-loader?name=[path][name].[ext]'
+            },
+            {
+                test: /\.(ttf|otf|eot|svg|woff(2)?)(\?[a-z0-9]+)?$/,
                 loader: 'file-loader?name=[path][name].[ext]'
             },
             {
                 test: /\.sass/,
-                loader: NODE_ENV !== 'development'
+                loader: NODE_ENV === 'production'
                     ? ExtractTextPlugin.extract({
                     fallback: "style-loader",
-                    use: "css-loader!autoprefixer-loader?browsers=last 2 versions!sass-loader"
-                }) : "style-loader!css-loader!autoprefixer-loader!sass-loader",
+                    use: "css-loader?minimize=true!autoprefixer-loader?browsers=last 2 versions!sass-loader"
+                }) : "style-loader!css-loader!autoprefixer-loader?browsers=last 2 versions!sass-loader",
                 exclude: [/node_modules/]
             }
         ]
     },
     plugins: [
         new webpack.DefinePlugin({
-            NODE_ENV: JSON.stringify(NODE_ENV)
-        }),
-        
-        new ExtractTextPlugin({
-            filename: 'styles.css',
-            allChunks: true
+            NODE_ENV: JSON.stringify(process.env.NODE_ENV)
         })
     ]
 };
 
-if (NODE_ENV !== 'development') {
+if (NODE_ENV === 'production') {
     module.exports.plugins.push(
         new webpack.optimize.UglifyJsPlugin({
             compress: {
@@ -64,6 +63,12 @@ if (NODE_ENV !== 'development') {
                 unsafe:       true
             }
         }),
-
+        new CopyWebpackPlugin([
+            {from: 'index.html', to: '../index.html'}
+        ]),
+        new ExtractTextPlugin({
+            filename: 'styles.css',
+            allChunks: true
+        })
     );
 }
